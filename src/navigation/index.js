@@ -9,19 +9,19 @@ import DetailsScreen from "../screens/productDetailScreen";
 const Navigation = () => {
     const [products] = useState(initialProducts);
     const [cartItems, setCartItems] = useState(() => {
-        const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+        const storedCartItems = JSON.parse(localStorage.getItem("cartItem"));
         return storedCartItems || [];
     });
     console.log(cartItems, 'item')
     useEffect(() => {
-        const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+        const storedCartItems = JSON.parse(localStorage.getItem("cartItem"));
         if (storedCartItems) {
             setCartItems(storedCartItems);
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem("cartItem", JSON.stringify(cartItems));
     }, [cartItems]);
 
     const addRemoveCart = (article) => {
