@@ -4,14 +4,10 @@ import {useParams} from 'react-router-dom';
 import Colors from "../../components/colors";
 import ButtonAddToCart from "../../components/buttonAddToCart";
 
-const DetailsScreen = ({cartItems, addRemoveCart, products}) => {
+const DetailsScreen = ({cartItems,addRemoveCart, products}) => {
     const {id} = useParams();
+    console.log(products,'id')
     const product = products.find(item => item.id === id);
-
-    if (!product) {
-        return <div>Product not found</div>;
-    }
-
 
     return (
         <>{(!product) ? (
@@ -27,7 +23,7 @@ const DetailsScreen = ({cartItems, addRemoveCart, products}) => {
                     <Colors colors={product.colors}/>
                     <p>{product.description}</p>
                     <p>{product.content}</p>
-                    <ButtonAddToCart cartItems={cartItems} addRemoveCart={addRemoveCart} product={products}/>
+                    <ButtonAddToCart included={cartItems.includes(product)} onAdd={()=>addRemoveCart(product)}/>
                 </div>
             </div>)}
 

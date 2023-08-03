@@ -1,18 +1,18 @@
 import React from 'react';
-import './style.css'
+import './style.css';
 
 const CartScreen = (props) => {
-    const {cartItems, addRemoveCart} = props;
+    const { cartItems, addRemoveCart } = props;
     const cartTotal = cartItems.reduce((total, item) => total + item.price, 0);
     return (
         <>
             {cartItems.length === 0 ? (
-                <div className='emptyCart'><h1>Your cart is empty</h1></div>
+                <div className='emptyCart'><h1>Ваша корзина пуста</h1></div>
             ) : (
                 <>
-                    {cartItems.map(item => (
+                    {cartItems.map((item) => (
                         <div className="details cart" key={item.id}>
-                            <img src={item.image} alt=""/>
+                            <img src={item.image} alt="" />
                             <div className="box">
                                 <div className="row">
                                     <h2>{item.title}</h2>
@@ -25,12 +25,11 @@ const CartScreen = (props) => {
                         </div>
                     ))}
                     <div className="total">
-                        <h3>Total: {cartTotal}</h3>
+                        <h3>Всего: {cartTotal}</h3>
                     </div>
                 </>
             )}
         </>
-
     );
 };
 
