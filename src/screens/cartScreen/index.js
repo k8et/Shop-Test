@@ -7,7 +7,7 @@ const CartScreen = (props) => {
     return (
         <>
             {cartItems.length === 0 ? (
-                <div className='emptyCart'><h1>Your cart is emptyCart</h1></div>
+                <div className='emptyCart'><h1>Your cart is empty</h1></div>
             ) : (
                 <>
                     {cartItems.map(item => (

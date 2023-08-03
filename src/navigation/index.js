@@ -12,7 +12,7 @@ const Navigation = () => {
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
         return storedCartItems || [];
     });
-
+console.log(cartItems,'item')
     useEffect(() => {
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
         if (storedCartItems) {
@@ -25,10 +25,12 @@ const Navigation = () => {
     }, [cartItems]);
 
     const addRemoveCart = (article) => {
-        const existingItem = cartItems.find((item) => item.id === article.id);
+        const existingItemIndex = cartItems.findIndex((item) => item.id === article.id);
 
-        if (existingItem) {
-            setCartItems(cartItems.filter((item) => item.id !== article.id));
+        if (existingItemIndex !== -1) {
+            const updatedCartItems = [...cartItems];
+            updatedCartItems.splice(existingItemIndex, 1);
+            setCartItems(updatedCartItems);
         } else {
             setCartItems([...cartItems, article]);
         }

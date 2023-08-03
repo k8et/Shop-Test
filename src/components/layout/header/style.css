@@ -33,6 +33,7 @@ nav ul li a:hover{
 nav .nav-cart{
     cursor: pointer;
     position: relative;
+    top: 12px;
 }
 nav .nav-cart span{
     position: absolute;
