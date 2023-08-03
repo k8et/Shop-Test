@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import CartIcon from '../../../assets/svg/cart.svg'
 import Close from '../../../assets/svg/x-lg.svg'
@@ -9,9 +9,16 @@ const Header = (props) => {
     const { cartItems } = props;
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const modalRef = useRef();
 
     const handleResize = () => {
         setIsMobile(window.innerWidth < 800);
+    };
+
+    const handleClickOutsideModal = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+            setIsModalOpen(false);
+        }
     };
 
     useEffect(() => {
@@ -20,6 +27,17 @@ const Header = (props) => {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    useEffect(() => {
+        if (isModalOpen) {
+            window.addEventListener("mousedown", handleClickOutsideModal);
+        } else {
+            window.removeEventListener("mousedown", handleClickOutsideModal);
+        }
+        return () => {
+            window.removeEventListener("mousedown", handleClickOutsideModal);
+        };
+    }, [isModalOpen]);
 
     return (
         <div>
@@ -49,7 +67,7 @@ const Header = (props) => {
                     </div>
                 </nav>
                 {isModalOpen && (
-                    <div className="modal">
+                    <div className="modal" ref={modalRef}>
                         <ul className="modal-links">
                             <img src={Close} alt={''} onClick={() => setIsModalOpen(false)}/>
                             <li><Link to="/">Home</Link></li>
