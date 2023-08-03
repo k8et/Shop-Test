@@ -46,7 +46,7 @@ console.log(cartItems,'item')
 
             <Routes>
                 <Route path="/cart" element={<CartScreen cartItems={cartItems} addRemoveCart={addRemoveCart} clearCart={clearCart} />} />
-                <Route path="/" element={<HomeScreen cartItems={cartItems} products={products} addRemoveCart={addRemoveCart} />} />
+                <Route path="/" element={<HomeScreen products={products}  />} />
                 <Route path="/details/:id" element={<DetailsScreen cartItems={cartItems} addRemoveCart={addRemoveCart} products={products} />} />
             </Routes>
         </div>

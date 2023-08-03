@@ -3,11 +3,11 @@ import './style.css';
 import Product from "../../components/product";
 
 const Home = (props) => {
-    const {addRemoveCart, products, cartItems} = props;
+    const {products} = props;
     return (
         <div className="products-container">
             {products.map((product) => (
-                <Product addRemoveCart={addRemoveCart} cartItems={cartItems} product={product}/>
+                <Product product={product}/>
             ))}
         </div>
     );

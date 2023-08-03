@@ -1,9 +1,8 @@
 import React from 'react';
 import './style.css';
-import ButtonAddToCart from "../buttonAddToCart";
 import {Link} from "react-router-dom";
 
-const Product = ({product, cartItems, addRemoveCart}) => {
+const Product = ({product}) => {
 
     return (
         <div className="product">
@@ -13,7 +12,6 @@ const Product = ({product, cartItems, addRemoveCart}) => {
                 <p>{product.description}</p>
                 <p>Price: {product.price} UAH</p>
             </Link>
-            <ButtonAddToCart cartItems={cartItems} addRemoveCart={addRemoveCart} product={product}/>
         </div>
     );
 };
